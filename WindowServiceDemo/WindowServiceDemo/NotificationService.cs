@@ -96,7 +96,8 @@ namespace WindowServiceDemo
             this.OnStop();
         }
 
-        private void serverTimer_Tick(object sender, System.Timers.ElapsedEventArgs e)
+
+        private void serverTimer_Tick(object sender, EventArgs e)
         {
             //Create a new SMTP client from the application settings, log in and
             //send whatever mails have been enqueued.
