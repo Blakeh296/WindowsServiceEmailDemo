@@ -21,42 +21,106 @@ namespace SendTextDemo
             InitializeComponent();
         }
 
+        private void Form1_Load(object sender, EventArgs e)
+        {
+            tbCharacterCount.Text = tbPhoneNumber.TextLength.ToString();
+        }
+
         private void btnSendSMS_Click(object sender, EventArgs e)
         {
-            MailMessage SMS = new MailMessage();
-            SmtpClient smtpClient = new SmtpClient();
+            errorProvider1.Clear();
+
+            //Create the Recipient variable to Grab the recipients phone number
+            string recipient = "";
+            //string recipient = "3524549993" + Settings.Default.serverVZ;
+            SmtpClient smtpClient = new SmtpClient(Settings.Default.GmailServer, 587);
 
             try
             {
-                if(rbVerizon.Checked)
+
+                if (tbPhoneNumber.TextLength < 10) //Fist determine if the phone number is proper length
                 {
-                    SMS.To.Add(tbPhoneNumber.Text + Settings.Default.serverVZ);
+                    statusStrip1.BackColor = Color.Red;
+                    statusStrip1.ForeColor = Color.White;
+                    toolStripStatusLabel1.Text = "Check Recipient phone number";
+                    errorProvider1.SetError(tbPhoneNumber, "Invalid Length");
                 }
-                else if(rbATT.Checked)
+                else if(cbServiceProvider.Text == "Verizon") //Check to see if VZ was selected by user
                 {
-                    SMS.To.Add(tbPhoneNumber.Text + Settings.Default.serverATT);
+                    recipient = tbPhoneNumber.Text + Settings.Default.serverVZ;
                 }
-                else if (rbTMobile.Checked)
+                else if(cbServiceProvider.Text == "ATT") //Check to see if ATT was selected by the user
                 {
-                    SMS.To.Add(tbPhoneNumber.Text + Settings.Default.serverTMobile);
+                    recipient = tbPhoneNumber.Text + Settings.Default.serverATT;
                 }
-                else if (rbSprint.Checked)
+                else if (cbServiceProvider.Text == "T-Mobile") //Check to see if T-Mobile was selected by the user
                 {
-                    SMS.To.Add(tbPhoneNumber.Text + Settings.Default.serverSprint);
+                    recipient = tbPhoneNumber.Text + Settings.Default.serverTMobile;
+                }
+                else if (cbServiceProvider.Text == "Sprint") //Check to see if Sprint was selected by the user
+                {
+                    recipient = tbPhoneNumber.Text + Settings.Default.serverSprint;
                 }
 
+                MailMessage SMS = new MailMessage(Settings.Default.FromEmail, recipient);
                 SMS.Body = rtbSMSmessage.Text;
                 SMS.IsBodyHtml = true;
                 smtpClient.Credentials = new NetworkCredential(Settings.Default.FromEmail, Settings.Default.EmailPassword);
                 smtpClient.EnableSsl = true;
                 smtpClient.Send(SMS);
-                MessageBox.Show("SMS Sent Successfully");
+                toolStripStatusLabel1.ForeColor = Color.Black;
+                statusStrip1.BackColor = Color.Lime;
+                toolStripStatusLabel1.Text = "SMS Sent Successfully";
 
             }
             catch (Exception ex)
             {
-                MessageBox.Show(ex.Message);
+                toolStripStatusLabel1.ForeColor = Color.White;
+                statusStrip1.BackColor = Color.Red;
+                toolStripStatusLabel1.Text = ex.Message.ToString();
             }
+        }
+
+        private void rtbSMSmessage_TextChanged(object sender, EventArgs e)
+        {
+            tbCharacterCount.Text = rtbSMSmessage.TextLength.ToString();
+        }
+
+        private void verizonToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            cbServiceProvider.Text = "Verizon";
+        }
+
+        private void aTTToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            cbServiceProvider.Text = "ATT";
+        }
+
+        private void tMobileToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            cbServiceProvider.Text = "T-Mobile";
+        }
+
+        private void sprintToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            cbServiceProvider.Text = "Sprint";
+        }
+
+        private void clearSMSBodyToolStripMenuItem1_Click(object sender, EventArgs e)
+        {
+            rtbSMSmessage.Text = "";
+        }
+
+        private void clearALLToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            tbPhoneNumber.Text = "";
+            rtbSMSmessage.Text = "";
+            tbCharacterCount.Text = tbPhoneNumber.TextLength.ToString();
+        }
+
+        private void exitToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            Application.Exit();
         }
     }
 }
