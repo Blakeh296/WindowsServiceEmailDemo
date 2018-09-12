@@ -36,6 +36,7 @@ namespace WindowServiceDemo
         protected override void OnStop()
         {
             // TODO: Add code here to perform any tear-down necessary to stop your service.
+            SendStartupEmail();
         }
 
         public void SendStartupEmail()

@@ -39,6 +39,7 @@
             // 
             // serverTimer
             // 
+            this.serverTimer.Enabled = true;
             this.serverTimer.Interval = 300000;
             this.serverTimer.Tick += new System.EventHandler(this.serverTimer_Tick);
             // 
