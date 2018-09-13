@@ -19,10 +19,13 @@ namespace WindowServiceDemo
     {
         //Creates a text file for errors and status messages. 
         //This will probably be in C:\Windows\SYSWOW64.
-        StreamWriter swErrorWrite = new StreamWriter(Settings.Default.LogLocation, true);
+        StreamWriter sw = new StreamWriter(@"G:\C#\WindowsServiceEmailDemo\WindowServiceDemo\\NotifyServiceLog.txt", true);
         //Queue to store email messages before sending , incase there is no internet on,
         //Computer start up
         Queue<MailMessage> notificationMessage = new Queue<MailMessage>();
+        //Create the DirectoryMonitor Class & feed it The directory path to monitor
+        //Can easily be changed in Project -> Project Property -> settings
+        DirectoryMonitor monitor = new DirectoryMonitor(@"C:\Users\Cyberadmin\Desktop\TestingArea");
 
         public NotificationService()
         {
@@ -31,18 +34,27 @@ namespace WindowServiceDemo
 
         protected override void OnStart(string[] args)
         {
+            // COMMENTED OUT WORKING CODE sw.WriteLine("Program Started: " + DateTime.Now.ToString());
+
+            //Log actions to TxtFile
             LogAction(new string[] { DateTime.Now.ToString(), "Window Service Started." });
-            SendStartupEmail();
+            SendStartupTxt();
         }
 
         protected override void OnStop()
-        {
-            LogAction(new string[] { DateTime.Now.ToString(), "Window Service Stopped." });
+        {    
             // TODO: Add code here to perform any tear-down necessary to stop your service.
-            SendStartupEmail();
+
+            // COMMENTED OUT WORKING CODE sw.WriteLine("Program  Ended: " + DateTime.Now.ToString());
+            SendStartupTxt();
+            //Log actions to TxtFile
+            LogAction(new string[] { DateTime.Now.ToString(), "Window Service Stopped." });
+            
+            // Program is over End Stream writer
+            sw.Close();
         }
 
-        public void SendStartupEmail()
+        public void SendStartupTxt()
         {
             //Create a new e-mail stating that the system has been started
             //and add it to the message Queue
@@ -66,7 +78,7 @@ namespace WindowServiceDemo
                 smtpClient.Send(currentMsg);
                 currentMsg = notificationMessage.Dequeue();
                 //Log success
-                LogAction(new string[] { DateTime.Now.ToString(), "Email was sent successfully" });
+                LogAction(new string[] { DateTime.Now.ToString(), "Text was sent successfully" });
             }
             catch (Exception ex)
             {
@@ -83,7 +95,7 @@ namespace WindowServiceDemo
                 foreach (string msgLine in message)
                 {
                     //Write to system log.
-                    swErrorWrite.WriteLine(msgLine);
+                    sw.WriteLine(msgLine);
                 }
             }
             catch (Exception ex)
@@ -131,5 +143,6 @@ namespace WindowServiceDemo
                 LogAction(new string[] { DateTime.Now.ToString(), ex.Message });
             }
         }
+
     }
 }

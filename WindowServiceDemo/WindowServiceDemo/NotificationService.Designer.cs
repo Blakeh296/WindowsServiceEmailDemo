@@ -31,7 +31,9 @@
             this.components = new System.ComponentModel.Container();
             this.eventLog1 = new System.Diagnostics.EventLog();
             this.serverTimer = new System.Windows.Forms.Timer(this.components);
+            this.fileSystemWatcher1 = new System.IO.FileSystemWatcher();
             ((System.ComponentModel.ISupportInitialize)(this.eventLog1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.fileSystemWatcher1)).BeginInit();
             // 
             // eventLog1
             // 
@@ -43,10 +45,15 @@
             this.serverTimer.Interval = 300000;
             this.serverTimer.Tick += new System.EventHandler(this.serverTimer_Tick);
             // 
+            // fileSystemWatcher1
+            // 
+            this.fileSystemWatcher1.EnableRaisingEvents = true;
+            // 
             // NotificationService
             // 
             this.ServiceName = "NotificationService";
             ((System.ComponentModel.ISupportInitialize)(this.eventLog1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.fileSystemWatcher1)).EndInit();
 
         }
 
@@ -54,5 +61,6 @@
 
         private System.Diagnostics.EventLog eventLog1;
         private System.Windows.Forms.Timer serverTimer;
+        private System.IO.FileSystemWatcher fileSystemWatcher1;
     }
 }

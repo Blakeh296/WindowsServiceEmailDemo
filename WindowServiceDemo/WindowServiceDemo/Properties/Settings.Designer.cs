@@ -43,7 +43,7 @@ namespace WindowServiceDemo.Properties {
         
         [global::System.Configuration.ApplicationScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("NotifyServiceLog.txt")]
+        [global::System.Configuration.DefaultSettingValueAttribute("@\"G:\\C#\\WindowsServiceEmailDemo\\WindowServiceDemo\\\\NotifyServiceLog.txt\"")]
         public string LogLocation {
             get {
                 return ((string)(this["LogLocation"]));
@@ -77,15 +77,21 @@ namespace WindowServiceDemo.Properties {
             }
         }
         
-        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Configuration.ApplicationScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.Configuration.DefaultSettingValueAttribute("@vtext.com")]
         public string serverVZ {
             get {
                 return ((string)(this["serverVZ"]));
             }
-            set {
-                this["serverVZ"] = value;
+        }
+        
+        [global::System.Configuration.ApplicationScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("@\"C:\\Users\\Cyberadmin\\Desktop\\TestingArea\"")]
+        public string MonitorDirectory {
+            get {
+                return ((string)(this["MonitorDirectory"]));
             }
         }
     }
