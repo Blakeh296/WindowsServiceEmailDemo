@@ -18,19 +18,32 @@ namespace WindowServiceDemo
             fileSystemWatcher.EnableRaisingEvents = true;
         }
 
-        private static void DirectoryMonitored_Created(object sender, FileSystemEventArgs e)
+        private void fileSystemWatcher_Changed(object sender, FileSystemEventArgs e)
         {
-
+            StreamWriter sw = new StreamWriter(@"G:\C#\WindowsServiceEmailDemo\WindowServiceDemo\\NotifyServiceLog.txt", true);
+            sw.WriteLine("File Modified: " + DateTime.Now.ToString());
+            sw.Close();
         }
 
-        private static void DirectoryMonitored_Renamed(object sender, FileSystemEventArgs e)
+        private void fileSystemWatcher_Created(object sender, FileSystemEventArgs e)
         {
-
+            StreamWriter sw = new StreamWriter(@"G:\C#\WindowsServiceEmailDemo\WindowServiceDemo\\NotifyServiceLog.txt", true);
+            sw.WriteLine("File Created: " + DateTime.Now.ToString());
+            sw.Close();
         }
 
-        private static void DirectoryMonitored_Deleted(object sender, FileSystemEventArgs e)
+        private void fileSystemWatcher_Deleted(object sender, FileSystemEventArgs e)
         {
+            StreamWriter sw = new StreamWriter(@"G:\C#\WindowsServiceEmailDemo\WindowServiceDemo\\NotifyServiceLog.txt", true);
+            sw.WriteLine("File Deleted: " + DateTime.Now.ToString());
+            sw.Close();
+        }
 
+        private void fileSystemWatcher_Renamed(object sender, RenamedEventArgs e)
+        {
+            StreamWriter sw = new StreamWriter(@"G:\C#\WindowsServiceEmailDemo\WindowServiceDemo\\NotifyServiceLog.txt", true);
+            sw.WriteLine("File renamed" + DateTime.Now.ToString());
+            sw.Close();
         }
     }
 }

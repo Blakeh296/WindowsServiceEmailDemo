@@ -33,7 +33,7 @@ namespace WindowServiceDemo
         }
 
         protected override void OnStart(string[] args)
-        {
+        { 
             // COMMENTED OUT WORKING CODE sw.WriteLine("Program Started: " + DateTime.Now.ToString());
 
             //Log actions to TxtFile
@@ -144,5 +144,6 @@ namespace WindowServiceDemo
             }
         }
 
+        
     }
 }
