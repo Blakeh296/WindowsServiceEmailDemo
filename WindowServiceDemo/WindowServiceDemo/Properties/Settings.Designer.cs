@@ -67,5 +67,26 @@ namespace WindowServiceDemo.Properties {
                 return ((string)(this["password"]));
             }
         }
+        
+        [global::System.Configuration.ApplicationScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("3524549993")]
+        public string PhoneNumber {
+            get {
+                return ((string)(this["PhoneNumber"]));
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("@vtext.com")]
+        public string serverVZ {
+            get {
+                return ((string)(this["serverVZ"]));
+            }
+            set {
+                this["serverVZ"] = value;
+            }
+        }
     }
 }

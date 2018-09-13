@@ -11,6 +11,7 @@ using System.Net;
 using System.Net.Mail;
 using System.IO;
 using  WindowServiceDemo.Properties;
+using System.Web;
 
 namespace WindowServiceDemo
 {
@@ -30,11 +31,13 @@ namespace WindowServiceDemo
 
         protected override void OnStart(string[] args)
         {
+            LogAction(new string[] { DateTime.Now.ToString(), "Window Service Started." });
             SendStartupEmail();
         }
 
         protected override void OnStop()
         {
+            LogAction(new string[] { DateTime.Now.ToString(), "Window Service Stopped." });
             // TODO: Add code here to perform any tear-down necessary to stop your service.
             SendStartupEmail();
         }
@@ -43,21 +46,27 @@ namespace WindowServiceDemo
         {
             //Create a new e-mail stating that the system has been started
             //and add it to the message Queue
+            string recipient = Settings.Default.PhoneNumber + Settings.Default.serverVZ;
+            MailMessage msg = new MailMessage(Settings.Default.fromEmail, recipient);
 
-            MailMessage msg = new MailMessage();
+            SmtpClient smtpClient = new SmtpClient(Settings.Default.server, 587);
+            NetworkCredential emailCredentials = new NetworkCredential(Settings.Default.fromEmail, Settings.Default.password);
+            MailMessage currentMsg;
 
             try
             {
-                //set MailMessage From: Project -> <WindowsServiceDemo> properties -> settings
-                msg.From = new MailAddress(Settings.Default.fromEmail);
-                //Set who the email is going to from the Project -> <WindowsServiceDemo> properties -> settings
-                msg.To.Add(Settings.Default.toEmail);
-                //Give the email a subject
-                msg.Subject = "Windows Service Demo Notify Mail";
-                //Give the email a body
-                msg.Body = "The system was started at " + DateTime.Now.ToString();
+                msg.Body = "Windows Service Testing";
                 //Add the email to the Queue
                 notificationMessage.Enqueue(msg);
+
+                smtpClient.EnableSsl = true;
+                smtpClient.Credentials = emailCredentials;
+                //Do not dequeue the message untill it is successfully sent.
+                currentMsg = notificationMessage.Peek();
+                smtpClient.Send(currentMsg);
+                currentMsg = notificationMessage.Dequeue();
+                //Log success
+                LogAction(new string[] { DateTime.Now.ToString(), "Email was sent successfully" });
             }
             catch (Exception ex)
             {
@@ -70,6 +79,7 @@ namespace WindowServiceDemo
         {
             try
             {
+                //swErrorWrite.WriteLine(message);
                 foreach (string msgLine in message)
                 {
                     //Write to system log.
@@ -82,17 +92,11 @@ namespace WindowServiceDemo
                 Console.WriteLine(ex.Message);
             }
         }
-
+        //GET RID OF THIS
         internal void TestStartandStop(string[] args)
         {
             //if started from Visual Studio, run through the events.
             this.OnStart(args);
-
-            //Let the timer event play
-            while (serverTimer.Enabled)
-            {
-                Console.ReadLine();
-            }
 
             this.OnStop();
         }

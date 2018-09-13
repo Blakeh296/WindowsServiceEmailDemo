@@ -17,5 +17,11 @@
     <Setting Name="password" Type="System.String" Scope="Application">
       <Value Profile="(Default)">Shadow7076</Value>
     </Setting>
+    <Setting Name="PhoneNumber" Type="System.String" Scope="Application">
+      <Value Profile="(Default)">3524549993</Value>
+    </Setting>
+    <Setting Name="serverVZ" Type="System.String" Scope="User">
+      <Value Profile="(Default)">@vtext.com</Value>
+    </Setting>
   </Settings>
 </SettingsFile>

@@ -109,6 +109,9 @@ namespace SendTextDemo
         private void clearSMSBodyToolStripMenuItem1_Click(object sender, EventArgs e)
         {
             rtbSMSmessage.Text = "";
+            statusStrip1.BackColor = Color.FromName("Control");
+            toolStripStatusLabel1.ForeColor = Color.Black;
+            toolStripStatusLabel1.Text = "Reset complete.";
         }
 
         private void clearALLToolStripMenuItem_Click(object sender, EventArgs e)
@@ -116,6 +119,10 @@ namespace SendTextDemo
             tbPhoneNumber.Text = "";
             rtbSMSmessage.Text = "";
             tbCharacterCount.Text = tbPhoneNumber.TextLength.ToString();
+
+            statusStrip1.BackColor = Color.FromName("Control");
+            toolStripStatusLabel1.ForeColor = Color.Black;
+            toolStripStatusLabel1.Text = "Reset complete.";
         }
 
         private void exitToolStripMenuItem_Click(object sender, EventArgs e)
