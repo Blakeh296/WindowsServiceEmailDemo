@@ -11,6 +11,9 @@ namespace WindowServiceDemo
     {
         FileSystemWatcher fileSystemWatcher = new FileSystemWatcher();
 
+        //Some info can be found at
+        //https://www.infoworld.com/article/3185447/c-sharp/how-to-work-with-filesystemwatcher-in-c.html
+
         public DirectoryMonitor(string dirpath)
         {
             fileSystemWatcher.Path = dirpath;

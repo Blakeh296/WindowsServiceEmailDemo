@@ -112,6 +112,7 @@ namespace WindowServiceDemo
 
             while (timer.Enabled)
             {
+                monitor.Watch();
                 Console.ReadLine();
             }
 
