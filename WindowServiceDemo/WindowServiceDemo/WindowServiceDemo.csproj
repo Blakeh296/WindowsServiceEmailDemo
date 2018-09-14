@@ -61,6 +61,14 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Classes\Audio.cs" />
+    <Compile Include="Classes\DataBase.cs" />
+    <Compile Include="Classes\ExecutableFiles.cs" />
+    <Compile Include="Classes\FileObj.cs" />
+    <Compile Include="Classes\Image.cs" />
+    <Compile Include="Classes\SystemFiles.cs" />
+    <Compile Include="Classes\Video.cs" />
+    <Compile Include="Classes\ZIPArchive.cs" />
     <Compile Include="DirectoryMonitor.cs" />
     <Compile Include="NotificationService.cs">
       <SubType>Component</SubType>
