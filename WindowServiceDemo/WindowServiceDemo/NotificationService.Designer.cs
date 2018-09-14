@@ -28,39 +28,40 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.components = new System.ComponentModel.Container();
             this.eventLog1 = new System.Diagnostics.EventLog();
-            this.serverTimer = new System.Windows.Forms.Timer(this.components);
             this.fileSystemWatcher = new System.IO.FileSystemWatcher();
+            this.timer = new System.Timers.Timer();
             ((System.ComponentModel.ISupportInitialize)(this.eventLog1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.fileSystemWatcher)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.timer)).BeginInit();
             // 
             // eventLog1
             // 
             this.eventLog1.Log = "Application";
             // 
-            // serverTimer
-            // 
-            this.serverTimer.Enabled = true;
-            this.serverTimer.Interval = 300000;
-            this.serverTimer.Tick += new System.EventHandler(this.serverTimer_Tick);
-            // 
             // fileSystemWatcher
             // 
             this.fileSystemWatcher.EnableRaisingEvents = true;
+            // 
+            // timer
+            // 
+            this.timer.Enabled = true;
+            this.timer.Interval = 1500D;
+            this.timer.Elapsed += new System.Timers.ElapsedEventHandler(this.timer_Elapsed);
             // 
             // NotificationService
             // 
             this.ServiceName = "NotificationService";
             ((System.ComponentModel.ISupportInitialize)(this.eventLog1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.fileSystemWatcher)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.timer)).EndInit();
 
         }
 
         #endregion
 
         private System.Diagnostics.EventLog eventLog1;
-        private System.Windows.Forms.Timer serverTimer;
         private System.IO.FileSystemWatcher fileSystemWatcher;
+        private System.Timers.Timer timer;
     }
 }

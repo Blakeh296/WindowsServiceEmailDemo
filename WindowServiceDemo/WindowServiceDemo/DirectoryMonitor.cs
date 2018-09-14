@@ -9,7 +9,6 @@ namespace WindowServiceDemo
 {
     class DirectoryMonitor
     {
-        private string dirPath;
         FileSystemWatcher fileSystemWatcher = new FileSystemWatcher();
 
         public DirectoryMonitor(string dirpath)

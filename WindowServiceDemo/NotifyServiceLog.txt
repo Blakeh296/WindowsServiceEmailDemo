@@ -1,9 +1,8 @@
-
-9/13/2018 6:15:01 PM
-Window Service Started.
-9/13/2018 6:15:03 PM
-Email was sent successfully
-9/13/2018 6:15:03 PM
-Window Service Stopped.
-9/13/2018 6:15:04 PM
-Email was sent successfully
+9/13/2018 7:58:35 PM Window Service Started.
+9/13/2018 7:58:37 PM Text was sent successfully
+9/13/2018 7:58:52 PM Text was sent successfully
+9/13/2018 7:58:52 PM Window Service Stopped.
+9/13/2018 8:00:34 PM Window Service Started.
+9/13/2018 8:00:36 PM Text sent successfully
+9/13/2018 8:00:44 PM Text sent successfully
+9/13/2018 8:00:44 PM Window Service Stopped.

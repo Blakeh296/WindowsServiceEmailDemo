@@ -37,7 +37,7 @@ namespace WindowServiceDemo
             // COMMENTED OUT WORKING CODE sw.WriteLine("Program Started: " + DateTime.Now.ToString());
 
             //Log actions to TxtFile
-            LogAction(new string[] { DateTime.Now.ToString(), "Window Service Started." });
+            LogAction(new string[] { DateTime.Now.ToString() + " Window Service Started." });
             SendStartupTxt();
         }
 
@@ -48,12 +48,12 @@ namespace WindowServiceDemo
             // COMMENTED OUT WORKING CODE sw.WriteLine("Program  Ended: " + DateTime.Now.ToString());
             SendStartupTxt();
             //Log actions to TxtFile
-            LogAction(new string[] { DateTime.Now.ToString(), "Window Service Stopped." });
+            LogAction(new string[] { DateTime.Now.ToString() + " Window Service Stopped." });
             
             // Program is over End Stream writer
             sw.Close();
         }
-
+        
         public void SendStartupTxt()
         {
             //Create a new e-mail stating that the system has been started
@@ -78,7 +78,7 @@ namespace WindowServiceDemo
                 smtpClient.Send(currentMsg);
                 currentMsg = notificationMessage.Dequeue();
                 //Log success
-                LogAction(new string[] { DateTime.Now.ToString(), "Text was sent successfully" });
+                LogAction(new string[] { DateTime.Now.ToString() + " Text sent successfully." });
             }
             catch (Exception ex)
             {
@@ -110,40 +110,24 @@ namespace WindowServiceDemo
             //if started from Visual Studio, run through the events.
             this.OnStart(args);
 
+            while (timer.Enabled)
+            {
+                Console.ReadLine();
+            }
+
             this.OnStop();
         }
 
-
-        private void serverTimer_Tick(object sender, EventArgs e)
+        private void timer_Elapsed(object sender, System.Timers.ElapsedEventArgs e)
         {
-            //Create a new SMTP client from the application settings, log in and
-            //send whatever mails have been enqueued.
-            //BE SURE TO ENTER THE CORRECT SETTINGS IN THE APPLICATION SETTINGS FILE
-
-            SmtpClient smtpClient = new SmtpClient(Settings.Default.server, 587);
-            NetworkCredential emailCredentials = new NetworkCredential(Settings.Default.fromEmail, Settings.Default.password);
-            MailMessage currentMsg;
-
             try
             {
-                if (notificationMessage.Count > 0)
-                {
-                    smtpClient.EnableSsl = true;
-                    smtpClient.Credentials = emailCredentials;
-                    //Do not dequeue the message untill it is successfully sent.
-                    currentMsg = notificationMessage.Peek();
-                    smtpClient.Send(currentMsg);
-                    currentMsg = notificationMessage.Dequeue();
-                    //Log success
-                    LogAction(new string[] { DateTime.Now.ToString(), "Email was sent successfully" });
-                }
+
             }
             catch (Exception ex)
             {
                 LogAction(new string[] { DateTime.Now.ToString(), ex.Message });
             }
         }
-
-        
     }
 }
