@@ -32,8 +32,8 @@ namespace WindowServiceDemo
         }
 
         protected override void OnStart(string[] args)
-        { 
-            // COMMENTED OUT WORKING CODE sw.WriteLine("Program Started: " + DateTime.Now.ToString());
+        {
+            LoadDirectories();
 
             //Log actions to TxtFile
             LogAction(new string[] { DateTime.Now.ToString() + " Window Service Started." });
