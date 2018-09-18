@@ -25,7 +25,6 @@ namespace WindowServiceDemo
         Queue<MailMessage> notificationMessage = new Queue<MailMessage>();
         //Create the DirectoryMonitor Class & feed it The directory path to monitor
         //Can easily be changed in Project -> Project Property -> settings
-        DirectoryMonitor monitor = new DirectoryMonitor(@"C:\Users\Cyberadmin\Desktop\TestingArea");
 
         public NotificationService()
         {
@@ -172,7 +171,7 @@ namespace WindowServiceDemo
                                 //Trime off quotation marks from Source Path
                                 dirSource = lineParse[0].Trim().Trim('"');
                                 //Grab Destination directory, next to Source Directory
-                                dirDestination = lineParse[1].Trim().('"');
+                                dirDestination = lineParse[1].Trim().Trim('"');
                                 //Set Boolean true if Path is active
                                 dirIncludeSubdirs = (lineParse[2].Trim() != "0");
                             }
@@ -234,6 +233,15 @@ namespace WindowServiceDemo
                 LogAction(new string[] { DateTime.Now.ToString() + "Error creating FileWatcher on "
                 + FileSource + ". " + ex.Message});
             }
+
+            //If the path was valid, return the file watcher
+            if (fwExt.Path.Length > 0)
+            {
+                return fwExt;
+            }
+            else
+                //Otherwise, return null
+                return null;
         }
 
         public class FileSystemWatcherExtClass : System.IO.FileSystemWatcher
