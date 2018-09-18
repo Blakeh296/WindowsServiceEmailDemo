@@ -111,7 +111,6 @@ namespace WindowServiceDemo
 
             while (timer.Enabled)
             {
-                monitor.Watch();
                 Console.ReadLine();
             }
 
@@ -262,32 +261,125 @@ namespace WindowServiceDemo
             }
         }
 
+        private void CopyChangedFile(FileSystemWatcherExtClass FileWatcher, string SourceFilePath)
+        {
+            string destinationPath = "";
+
+            try
+            {
+                //Get the destination path
+                destinationPath = SourceFilePath.Replace(FileWatcher.Path, FileWatcher.DestinationDirectory)
+                    .Replace("\\\\", "\\");
+
+                //If it douesnt exist already, create it
+                if (!Directory.Exists(Directory.GetParent(destinationPath).ToString()))
+                    Directory.CreateDirectory(destinationPath);
+
+                //If the directory does exist, create the corresponding Directory
+                //Otherwise just copy the file
+                if (Directory.Exists(SourceFilePath))
+                    Directory.CreateDirectory(destinationPath);
+                else
+                    File.Copy(SourceFilePath, destinationPath, true);
+            }
+            catch (Exception ex)
+            {
+                LogAction(new string[] { DateTime.Now.ToString() + " Error copying file from " + SourceFilePath + " to " +
+                    destinationPath + ". " + ex.Message});
+            }
+        }
+
+        private void RenameBackupFile(FileSystemWatcherExtClass FileWatcher, string oldFile, string newFile)
+        {
+            string originPath = "", newPath = "";
+
+            try
+            {
+                //Get the full path of the original file
+                originPath = oldFile.Replace(FileWatcher.Path, FileWatcher.DestinationDirectory)
+                    .Replace("\\\\", "\\");
+
+                newPath = newFile.Replace(FileWatcher.Path, FileWatcher.DestinationDirectory)
+                    .Replace("\\\\", "\\");
+
+                //If its a directory, rename it
+                if (Directory.Exists(originPath))
+                                                         Directory.Move(originPath, newPath);
+                else
+                                                         File.Move(originPath, newPath);
+            }
+            catch (Exception ex)
+            {
+                LogAction(new string[] { DateTime.Now.ToString() + " Error copying file from " + originPath + " to "
+                + newPath + ".", ex.Message});
+            }
+        }
+
+        private void DeleteFile(FileSystemWatcherExtClass FileWatcher, string sourceFilePath)
+        {
+            string destinationPath;
+            try
+            {
+                //Get the destination path
+                destinationPath = sourceFilePath.Replace(FileWatcher.Path, FileWatcher.DestinationDirectory)
+                    .Replace("\\\\", "\\");
+
+                //If the file or directory exists, delete it 
+                if (File.Exists(destinationPath))
+                    File.Delete(destinationPath);
+                else if (Directory.Exists(destinationPath))
+                    Directory.Delete(destinationPath, true);
+            }
+            catch (Exception ex)
+            {
+                LogAction(new string[] { DateTime.Now.ToString() + " Error Deleting file from " +
+                    sourceFilePath + ". " + ex.Message});
+            }
+        }
+
         private void fileSystemWatcher_Changed(object sender, FileSystemEventArgs e)
         {
-            StreamWriter sw = new StreamWriter(@"G:\C#\WindowsServiceEmailDemo\WindowServiceDemo\\NotifyServiceLog.txt", true);
-            sw.WriteLine("File Modified: " + e.Name + " " + DateTime.Now.ToString());
-            sw.Close();
+            try
+            {
+                //Revert the generic object into a FileSystemWatcher
+                FileSystemWatcherExtClass fwExtended = (FileSystemWatcherExtClass)sender;
+
+                //Copy the file
+                CopyChangedFile(fwExtended, e.FullPath);
+
+                //Log changes
+                LogAction(new string[] { DateTime.Now.ToString() + " File Modified: " + e.Name });
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
         }
 
         private void fileSystemWatcher_Created(object sender, FileSystemEventArgs e)
         {
-            StreamWriter sw = new StreamWriter(@"G:\C#\WindowsServiceEmailDemo\WindowServiceDemo\\NotifyServiceLog.txt", true);
-            sw.WriteLine("File Created: " + e.Name + " " + DateTime.Now.ToString());
-            sw.Close();
+            //Revert the generic object into a FileSystemWatcher
+            FileSystemWatcherExtClass fwExtended = (FileSystemWatcherExtClass)sender;
+
+            //Copy the file
+            CopyChangedFile(fwExtended, e.FullPath);
+
+            //Log changes
+            LogAction(new string[] { DateTime.Now.ToString() + " File Created: " + e.Name });
         }
 
         private void fileSystemWatcher_Deleted(object sender, FileSystemEventArgs e)
         {
-            StreamWriter sw = new StreamWriter(@"G:\C#\WindowsServiceEmailDemo\WindowServiceDemo\\NotifyServiceLog.txt", true);
-            sw.WriteLine("File Deleted: " + e.Name + " " + DateTime.Now.ToString());
-            sw.Close();
+            FileSystemWatcherExtClass fwExtended = (FileSystemWatcherExtClass)sender;
         }
 
         private void fileSystemWatcher_Renamed(object sender, RenamedEventArgs e)
         {
-            StreamWriter sw = new StreamWriter(@"G:\C#\WindowsServiceEmailDemo\WindowServiceDemo\\NotifyServiceLog.txt", true);
-            sw.WriteLine("File renamed" + e.Name + " " + DateTime.Now.ToString());
-            sw.Close();
+            FileSystemWatcherExtClass fwExtended = (FileSystemWatcherExtClass)sender;
+
+            RenameBackupFile(fwExtended, e.OldFullPath, e.FullPath);
+
+            LogAction(new string[] { DateTime.Now.ToString() + " File Renamed: " + e.Name });
         }
     }
 }
