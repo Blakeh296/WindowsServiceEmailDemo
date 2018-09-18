@@ -10,18 +10,18 @@ using System.Threading.Tasks;
 using System.Net;
 using System.Net.Mail;
 using System.IO;
+using WindowServiceDemo;
 using  WindowServiceDemo.Properties;
-using System.Web;
+using System.Web; 
 
 namespace WindowServiceDemo
 {
     partial class NotificationService : ServiceBase
     {
         //Creates a text file for errors and status messages. 
-        //This will probably be in C:\Windows\SYSWOW64.
         StreamWriter sw = new StreamWriter(@"G:\C#\WindowsServiceEmailDemo\WindowServiceDemo\\NotifyServiceLog.txt", true);
         //Queue to store email messages before sending , incase there is no internet on,
-        //Computer start up
+        //Program start up
         Queue<MailMessage> notificationMessage = new Queue<MailMessage>();
         //Create the DirectoryMonitor Class & feed it The directory path to monitor
         //Can easily be changed in Project -> Project Property -> settings
@@ -129,6 +129,157 @@ namespace WindowServiceDemo
             {
                 LogAction(new string[] { DateTime.Now.ToString(), ex.Message });
             }
+        }
+
+        private void LoadDirectories()
+        {
+            //Load all the directories from the CSV File
+            //Initialize the StreamReader with the 'Stream to be read' which is the "File Name"
+            StreamReader directories = new StreamReader("Directories.csv");
+            // Create the Watcher object from our custom class
+            FileSystemWatcherExtClass watcherClass;
+            // 3 string variables
+            string currentLine, dirSource = "", dirDestination = "";
+            bool directoryActive = false, validLine = false, dirIncludeSubdirs = false;
+            string[] lineParse;
+
+            try
+            {
+                while (!directories.EndOfStream) //While the StreamReader is not @ End of Stream
+                {
+                    //Read the next line
+                    currentLine = directories.ReadLine();
+                    //Set Bool to false
+                    validLine = false;
+
+                    //Does the Line being Currently Read start with "#"?
+                    if (currentLine.StartsWith("#"))
+                    {
+                        // Delimit current line with (0, 1) Starting from the left and removing the # 
+                        lineParse = currentLine.Remove(0, 1).Split(',');
+                        //Make sure there are four fields in the lines accrossed
+                        if(lineParse.Length == 4)
+                        {
+                            //If the if statement Evaluates True
+                            //if Directory is active if != 0
+                            directoryActive = (lineParse[3].Trim() != "0");
+
+                            //If directory Active == True
+                            if (directoryActive)
+                            {
+                                //Grab source and destination Directories
+                                validLine = true;
+                                //Trime off quotation marks from Source Path
+                                dirSource = lineParse[0].Trim().Trim('"');
+                                //Grab Destination directory, next to Source Directory
+                                dirDestination = lineParse[1].Trim().('"');
+                                //Set Boolean true if Path is active
+                                dirIncludeSubdirs = (lineParse[2].Trim() != "0");
+                            }
+                        }
+                    }
+
+                    //If the line was valid, create a new FileWatcher and add it to the list
+                    if (validLine)
+                    {
+                        watcherClass = GenerateFileWatcher(dirSource, dirIncludeSubdirs, dirDestination);
+
+                        if (watcherClass != null)
+                        {
+                            watcherClass.EnableRaisingEvents = true;
+                            watcherClass.Changed += fileSystemWatcher_Changed;
+                            watcherClass.Created += fileSystemWatcher_Created;
+                            watcherClass.Deleted += fileSystemWatcher_Deleted;
+                            watcherClass.Renamed += fileSystemWatcher_Renamed;
+                        }
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                LogAction(new string[] { DateTime.Now.ToString() + ex.Message });
+            }
+        }
+
+        private FileSystemWatcherExtClass GenerateFileWatcher(string FileSource, bool IncludeSubDirs, string Destination)
+        {
+            FileSystemWatcherExtClass fwExt = new FileSystemWatcherExtClass(Destination);
+            string filePath = "";
+            int charPlace;
+
+            try
+            {
+                if(Directory.Exists(FileSource))
+                {
+                    filePath = FileSource;
+                }
+                else
+                {
+                    //Char Place stores where the Directories end and the File name 
+                    charPlace = FileSource.LastIndexOf(@"\");
+                    filePath = FileSource.Substring(0);
+
+                    if (Directory.Exists(filePath))
+                    {
+                        //FileSystemWatcherExtClass == FilePath
+                        fwExt.Path = filePath;
+                        fwExt.Filter = FileSource.Substring(charPlace + 1);
+                    }
+                }
+
+                fwExt.IncludeSubdirectories = IncludeSubDirs;
+            }
+            catch (Exception ex)
+            {
+                LogAction(new string[] { DateTime.Now.ToString() + "Error creating FileWatcher on "
+                + FileSource + ". " + ex.Message});
+            }
+        }
+
+        public class FileSystemWatcherExtClass : System.IO.FileSystemWatcher
+        {
+            private string _destDirectroy;
+
+            public string DestinationDirectory
+            {
+                //Stores Destination Directory for file changes
+                get { return _destDirectroy; }
+                set { _destDirectroy = value; }
+            }
+
+            public FileSystemWatcherExtClass(string DestinationDirectory)
+            {
+                //Constructor to initialize _destDirectory Data member
+                _destDirectroy = DestinationDirectory;
+            }
+        }
+
+        private void fileSystemWatcher_Changed(object sender, FileSystemEventArgs e)
+        {
+            StreamWriter sw = new StreamWriter(@"G:\C#\WindowsServiceEmailDemo\WindowServiceDemo\\NotifyServiceLog.txt", true);
+            sw.WriteLine("File Modified: " + e.Name + " " + DateTime.Now.ToString());
+            sw.Close();
+        }
+
+        private void fileSystemWatcher_Created(object sender, FileSystemEventArgs e)
+        {
+            StreamWriter sw = new StreamWriter(@"G:\C#\WindowsServiceEmailDemo\WindowServiceDemo\\NotifyServiceLog.txt", true);
+            sw.WriteLine("File Created: " + e.Name + " " + DateTime.Now.ToString());
+            sw.Close();
+        }
+
+        private void fileSystemWatcher_Deleted(object sender, FileSystemEventArgs e)
+        {
+            StreamWriter sw = new StreamWriter(@"G:\C#\WindowsServiceEmailDemo\WindowServiceDemo\\NotifyServiceLog.txt", true);
+            sw.WriteLine("File Deleted: " + e.Name + " " + DateTime.Now.ToString());
+            sw.Close();
+        }
+
+        private void fileSystemWatcher_Renamed(object sender, RenamedEventArgs e)
+        {
+            StreamWriter sw = new StreamWriter(@"G:\C#\WindowsServiceEmailDemo\WindowServiceDemo\\NotifyServiceLog.txt", true);
+            sw.WriteLine("File renamed" + e.Name + " " + DateTime.Now.ToString());
+            sw.Close();
         }
     }
 }
