@@ -33,12 +33,12 @@
             this.rtbSMSmessage = new System.Windows.Forms.RichTextBox();
             this.btnSendSMS = new System.Windows.Forms.Button();
             this.ServiceProviders = new System.Windows.Forms.GroupBox();
+            this.label1 = new System.Windows.Forms.Label();
+            this.label2 = new System.Windows.Forms.Label();
+            this.cbServiceProvider = new System.Windows.Forms.ComboBox();
             this.tbCharacterCount = new System.Windows.Forms.TextBox();
             this.statusStrip1 = new System.Windows.Forms.StatusStrip();
             this.toolStripStatusLabel1 = new System.Windows.Forms.ToolStripStatusLabel();
-            this.cbServiceProvider = new System.Windows.Forms.ComboBox();
-            this.label1 = new System.Windows.Forms.Label();
-            this.label2 = new System.Windows.Forms.Label();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.label3 = new System.Windows.Forms.Label();
             this.errorProvider1 = new System.Windows.Forms.ErrorProvider(this.components);
@@ -52,6 +52,7 @@
             this.clearSMSBodyToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
             this.clearALLToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.exitToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.tyleeToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.ServiceProviders.SuspendLayout();
             this.statusStrip1.SuspendLayout();
             this.groupBox1.SuspendLayout();
@@ -77,6 +78,7 @@
             this.rtbSMSmessage.TabIndex = 1;
             this.rtbSMSmessage.Text = "";
             this.rtbSMSmessage.TextChanged += new System.EventHandler(this.rtbSMSmessage_TextChanged);
+            this.rtbSMSmessage.KeyDown += new System.Windows.Forms.KeyEventHandler(this.rtbSMSmessage_KeyDown);
             // 
             // btnSendSMS
             // 
@@ -103,42 +105,6 @@
             this.ServiceProviders.TabStop = false;
             this.ServiceProviders.Text = "Recipient Information :";
             // 
-            // tbCharacterCount
-            // 
-            this.tbCharacterCount.Location = new System.Drawing.Point(166, 123);
-            this.tbCharacterCount.Name = "tbCharacterCount";
-            this.tbCharacterCount.Size = new System.Drawing.Size(66, 22);
-            this.tbCharacterCount.TabIndex = 4;
-            this.tbCharacterCount.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
-            // 
-            // statusStrip1
-            // 
-            this.statusStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.toolStripStatusLabel1});
-            this.statusStrip1.Location = new System.Drawing.Point(0, 340);
-            this.statusStrip1.Name = "statusStrip1";
-            this.statusStrip1.Size = new System.Drawing.Size(292, 22);
-            this.statusStrip1.TabIndex = 5;
-            this.statusStrip1.Text = "statusStrip1";
-            // 
-            // toolStripStatusLabel1
-            // 
-            this.toolStripStatusLabel1.Name = "toolStripStatusLabel1";
-            this.toolStripStatusLabel1.Size = new System.Drawing.Size(0, 17);
-            // 
-            // cbServiceProvider
-            // 
-            this.cbServiceProvider.FormattingEnabled = true;
-            this.cbServiceProvider.Items.AddRange(new object[] {
-            "Verizon",
-            "ATT",
-            "T-Mobile",
-            "Sprint"});
-            this.cbServiceProvider.Location = new System.Drawing.Point(125, 25);
-            this.cbServiceProvider.Name = "cbServiceProvider";
-            this.cbServiceProvider.Size = new System.Drawing.Size(120, 24);
-            this.cbServiceProvider.TabIndex = 6;
-            // 
             // label1
             // 
             this.label1.AutoSize = true;
@@ -158,6 +124,42 @@
             this.label2.Size = new System.Drawing.Size(114, 16);
             this.label2.TabIndex = 7;
             this.label2.Text = "Service Provider :";
+            // 
+            // cbServiceProvider
+            // 
+            this.cbServiceProvider.FormattingEnabled = true;
+            this.cbServiceProvider.Items.AddRange(new object[] {
+            "Verizon",
+            "ATT",
+            "T-Mobile",
+            "Sprint"});
+            this.cbServiceProvider.Location = new System.Drawing.Point(125, 25);
+            this.cbServiceProvider.Name = "cbServiceProvider";
+            this.cbServiceProvider.Size = new System.Drawing.Size(120, 24);
+            this.cbServiceProvider.TabIndex = 6;
+            // 
+            // tbCharacterCount
+            // 
+            this.tbCharacterCount.Location = new System.Drawing.Point(166, 123);
+            this.tbCharacterCount.Name = "tbCharacterCount";
+            this.tbCharacterCount.Size = new System.Drawing.Size(66, 22);
+            this.tbCharacterCount.TabIndex = 4;
+            this.tbCharacterCount.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            // 
+            // statusStrip1
+            // 
+            this.statusStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.toolStripStatusLabel1});
+            this.statusStrip1.Location = new System.Drawing.Point(0, 339);
+            this.statusStrip1.Name = "statusStrip1";
+            this.statusStrip1.Size = new System.Drawing.Size(292, 22);
+            this.statusStrip1.TabIndex = 5;
+            this.statusStrip1.Text = "statusStrip1";
+            // 
+            // toolStripStatusLabel1
+            // 
+            this.toolStripStatusLabel1.Name = "toolStripStatusLabel1";
+            this.toolStripStatusLabel1.Size = new System.Drawing.Size(0, 17);
             // 
             // groupBox1
             // 
@@ -190,7 +192,8 @@
             // 
             this.mainMenu.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.serviceProviderToolStripMenuItem,
-            this.clearSMSBodyToolStripMenuItem});
+            this.clearSMSBodyToolStripMenuItem,
+            this.tyleeToolStripMenuItem});
             this.mainMenu.Location = new System.Drawing.Point(0, 0);
             this.mainMenu.Name = "mainMenu";
             this.mainMenu.Size = new System.Drawing.Size(292, 24);
@@ -211,28 +214,28 @@
             // verizonToolStripMenuItem
             // 
             this.verizonToolStripMenuItem.Name = "verizonToolStripMenuItem";
-            this.verizonToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.verizonToolStripMenuItem.Size = new System.Drawing.Size(123, 22);
             this.verizonToolStripMenuItem.Text = "Verizon";
             this.verizonToolStripMenuItem.Click += new System.EventHandler(this.verizonToolStripMenuItem_Click);
             // 
             // aTTToolStripMenuItem
             // 
             this.aTTToolStripMenuItem.Name = "aTTToolStripMenuItem";
-            this.aTTToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.aTTToolStripMenuItem.Size = new System.Drawing.Size(123, 22);
             this.aTTToolStripMenuItem.Text = "ATT";
             this.aTTToolStripMenuItem.Click += new System.EventHandler(this.aTTToolStripMenuItem_Click);
             // 
             // tMobileToolStripMenuItem
             // 
             this.tMobileToolStripMenuItem.Name = "tMobileToolStripMenuItem";
-            this.tMobileToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.tMobileToolStripMenuItem.Size = new System.Drawing.Size(123, 22);
             this.tMobileToolStripMenuItem.Text = "T-Mobile";
             this.tMobileToolStripMenuItem.Click += new System.EventHandler(this.tMobileToolStripMenuItem_Click);
             // 
             // sprintToolStripMenuItem
             // 
             this.sprintToolStripMenuItem.Name = "sprintToolStripMenuItem";
-            this.sprintToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.sprintToolStripMenuItem.Size = new System.Drawing.Size(123, 22);
             this.sprintToolStripMenuItem.Text = "Sprint";
             this.sprintToolStripMenuItem.Click += new System.EventHandler(this.sprintToolStripMenuItem_Click);
             // 
@@ -249,29 +252,36 @@
             // clearSMSBodyToolStripMenuItem1
             // 
             this.clearSMSBodyToolStripMenuItem1.Name = "clearSMSBodyToolStripMenuItem1";
-            this.clearSMSBodyToolStripMenuItem1.Size = new System.Drawing.Size(180, 22);
+            this.clearSMSBodyToolStripMenuItem1.Size = new System.Drawing.Size(157, 22);
             this.clearSMSBodyToolStripMenuItem1.Text = "&Clear SMS Body";
             this.clearSMSBodyToolStripMenuItem1.Click += new System.EventHandler(this.clearSMSBodyToolStripMenuItem1_Click);
             // 
             // clearALLToolStripMenuItem
             // 
             this.clearALLToolStripMenuItem.Name = "clearALLToolStripMenuItem";
-            this.clearALLToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.clearALLToolStripMenuItem.Size = new System.Drawing.Size(157, 22);
             this.clearALLToolStripMenuItem.Text = "&Clear ALL";
             this.clearALLToolStripMenuItem.Click += new System.EventHandler(this.clearALLToolStripMenuItem_Click);
             // 
             // exitToolStripMenuItem
             // 
             this.exitToolStripMenuItem.Name = "exitToolStripMenuItem";
-            this.exitToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.exitToolStripMenuItem.Size = new System.Drawing.Size(157, 22);
             this.exitToolStripMenuItem.Text = "&Exit";
             this.exitToolStripMenuItem.Click += new System.EventHandler(this.exitToolStripMenuItem_Click);
+            // 
+            // tyleeToolStripMenuItem
+            // 
+            this.tyleeToolStripMenuItem.Name = "tyleeToolStripMenuItem";
+            this.tyleeToolStripMenuItem.Size = new System.Drawing.Size(46, 20);
+            this.tyleeToolStripMenuItem.Text = "&Tylee";
+            this.tyleeToolStripMenuItem.Click += new System.EventHandler(this.tyleeToolStripMenuItem_Click);
             // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(292, 362);
+            this.ClientSize = new System.Drawing.Size(292, 361);
             this.Controls.Add(this.groupBox1);
             this.Controls.Add(this.statusStrip1);
             this.Controls.Add(this.mainMenu);
@@ -322,6 +332,7 @@
         private System.Windows.Forms.ToolStripMenuItem clearSMSBodyToolStripMenuItem1;
         private System.Windows.Forms.ToolStripMenuItem clearALLToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem exitToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem tyleeToolStripMenuItem;
     }
 }
 
