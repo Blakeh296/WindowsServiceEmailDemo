@@ -21,6 +21,8 @@ namespace SendTextDemo
             InitializeComponent();
         }
 
+        string lastMessage = "";
+
         //Tylee Number: 3523628441
         private void Form1_Load(object sender, EventArgs e)
         {
@@ -71,6 +73,7 @@ namespace SendTextDemo
                 smtpClient.Send(SMS);
                 toolStripStatusLabel1.ForeColor = Color.Black;
                 statusStrip1.BackColor = Color.Lime;
+                lastMessage = rtbSMSmessage.Text;
                 toolStripStatusLabel1.Text = "SMS Sent Successfully";
 
             }
@@ -177,6 +180,7 @@ namespace SendTextDemo
                     smtpClient.Send(SMS);
                     toolStripStatusLabel1.ForeColor = Color.Black;
                     statusStrip1.BackColor = Color.Lime;
+                    lastMessage = rtbSMSmessage.Text;
                     toolStripStatusLabel1.Text = "SMS Sent Successfully";
 
                 }
@@ -193,6 +197,11 @@ namespace SendTextDemo
         {
             cbServiceProvider.Text = "Verizon";
             tbPhoneNumber.Text = "3523628441";
+        }
+
+        private void lastSentTxtToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            rtbSMSmessage.Text = lastMessage;
         }
     }
 }

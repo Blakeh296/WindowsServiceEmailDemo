@@ -53,6 +53,7 @@
             this.clearALLToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.exitToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.tyleeToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.lastSentTxtToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.ServiceProviders.SuspendLayout();
             this.statusStrip1.SuspendLayout();
             this.groupBox1.SuspendLayout();
@@ -150,7 +151,7 @@
             // 
             this.statusStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.toolStripStatusLabel1});
-            this.statusStrip1.Location = new System.Drawing.Point(0, 339);
+            this.statusStrip1.Location = new System.Drawing.Point(0, 340);
             this.statusStrip1.Name = "statusStrip1";
             this.statusStrip1.Size = new System.Drawing.Size(292, 22);
             this.statusStrip1.TabIndex = 5;
@@ -244,7 +245,8 @@
             this.clearSMSBodyToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.clearSMSBodyToolStripMenuItem1,
             this.clearALLToolStripMenuItem,
-            this.exitToolStripMenuItem});
+            this.exitToolStripMenuItem,
+            this.lastSentTxtToolStripMenuItem});
             this.clearSMSBodyToolStripMenuItem.Name = "clearSMSBodyToolStripMenuItem";
             this.clearSMSBodyToolStripMenuItem.Size = new System.Drawing.Size(80, 20);
             this.clearSMSBodyToolStripMenuItem.Text = "&Application";
@@ -252,36 +254,43 @@
             // clearSMSBodyToolStripMenuItem1
             // 
             this.clearSMSBodyToolStripMenuItem1.Name = "clearSMSBodyToolStripMenuItem1";
-            this.clearSMSBodyToolStripMenuItem1.Size = new System.Drawing.Size(157, 22);
+            this.clearSMSBodyToolStripMenuItem1.Size = new System.Drawing.Size(180, 22);
             this.clearSMSBodyToolStripMenuItem1.Text = "&Clear SMS Body";
             this.clearSMSBodyToolStripMenuItem1.Click += new System.EventHandler(this.clearSMSBodyToolStripMenuItem1_Click);
             // 
             // clearALLToolStripMenuItem
             // 
             this.clearALLToolStripMenuItem.Name = "clearALLToolStripMenuItem";
-            this.clearALLToolStripMenuItem.Size = new System.Drawing.Size(157, 22);
+            this.clearALLToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
             this.clearALLToolStripMenuItem.Text = "&Clear ALL";
             this.clearALLToolStripMenuItem.Click += new System.EventHandler(this.clearALLToolStripMenuItem_Click);
             // 
             // exitToolStripMenuItem
             // 
             this.exitToolStripMenuItem.Name = "exitToolStripMenuItem";
-            this.exitToolStripMenuItem.Size = new System.Drawing.Size(157, 22);
+            this.exitToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
             this.exitToolStripMenuItem.Text = "&Exit";
             this.exitToolStripMenuItem.Click += new System.EventHandler(this.exitToolStripMenuItem_Click);
             // 
             // tyleeToolStripMenuItem
             // 
             this.tyleeToolStripMenuItem.Name = "tyleeToolStripMenuItem";
-            this.tyleeToolStripMenuItem.Size = new System.Drawing.Size(46, 20);
+            this.tyleeToolStripMenuItem.Size = new System.Drawing.Size(47, 20);
             this.tyleeToolStripMenuItem.Text = "&Tylee";
             this.tyleeToolStripMenuItem.Click += new System.EventHandler(this.tyleeToolStripMenuItem_Click);
+            // 
+            // lastSentTxtToolStripMenuItem
+            // 
+            this.lastSentTxtToolStripMenuItem.Name = "lastSentTxtToolStripMenuItem";
+            this.lastSentTxtToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.lastSentTxtToolStripMenuItem.Text = "&LastSentTxt";
+            this.lastSentTxtToolStripMenuItem.Click += new System.EventHandler(this.lastSentTxtToolStripMenuItem_Click);
             // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(292, 361);
+            this.ClientSize = new System.Drawing.Size(292, 362);
             this.Controls.Add(this.groupBox1);
             this.Controls.Add(this.statusStrip1);
             this.Controls.Add(this.mainMenu);
@@ -333,6 +342,7 @@
         private System.Windows.Forms.ToolStripMenuItem clearALLToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem exitToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem tyleeToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem lastSentTxtToolStripMenuItem;
     }
 }
 
