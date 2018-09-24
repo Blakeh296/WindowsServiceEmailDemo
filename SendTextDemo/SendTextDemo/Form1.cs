@@ -74,6 +74,8 @@ namespace SendTextDemo
                 toolStripStatusLabel1.ForeColor = Color.Black;
                 statusStrip1.BackColor = Color.Lime;
                 lastMessage = rtbSMSmessage.Text;
+                listBox1.Items.Add(lastMessage);
+                rtbSMSmessage.Text = "";
                 toolStripStatusLabel1.Text = "SMS Sent Successfully";
 
             }
@@ -181,6 +183,8 @@ namespace SendTextDemo
                     toolStripStatusLabel1.ForeColor = Color.Black;
                     statusStrip1.BackColor = Color.Lime;
                     lastMessage = rtbSMSmessage.Text;
+                    listBox1.Items.Add(lastMessage);
+                    rtbSMSmessage.Text = "";
                     toolStripStatusLabel1.Text = "SMS Sent Successfully";
 
                 }

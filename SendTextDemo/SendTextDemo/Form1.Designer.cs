@@ -52,8 +52,10 @@
             this.clearSMSBodyToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
             this.clearALLToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.exitToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.tyleeToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.lastSentTxtToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.tyleeToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.listBox1 = new System.Windows.Forms.ListBox();
+            this.label4 = new System.Windows.Forms.Label();
             this.ServiceProviders.SuspendLayout();
             this.statusStrip1.SuspendLayout();
             this.groupBox1.SuspendLayout();
@@ -84,7 +86,7 @@
             // btnSendSMS
             // 
             this.btnSendSMS.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnSendSMS.Location = new System.Drawing.Point(182, 295);
+            this.btnSendSMS.Location = new System.Drawing.Point(182, 353);
             this.btnSendSMS.Name = "btnSendSMS";
             this.btnSendSMS.Size = new System.Drawing.Size(88, 23);
             this.btnSendSMS.TabIndex = 2;
@@ -151,7 +153,7 @@
             // 
             this.statusStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.toolStripStatusLabel1});
-            this.statusStrip1.Location = new System.Drawing.Point(0, 340);
+            this.statusStrip1.Location = new System.Drawing.Point(0, 382);
             this.statusStrip1.Name = "statusStrip1";
             this.statusStrip1.Size = new System.Drawing.Size(292, 22);
             this.statusStrip1.TabIndex = 5;
@@ -168,7 +170,7 @@
             this.groupBox1.Controls.Add(this.tbCharacterCount);
             this.groupBox1.Controls.Add(this.rtbSMSmessage);
             this.groupBox1.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.groupBox1.Location = new System.Drawing.Point(10, 137);
+            this.groupBox1.Location = new System.Drawing.Point(10, 195);
             this.groupBox1.Name = "groupBox1";
             this.groupBox1.Size = new System.Drawing.Size(272, 152);
             this.groupBox1.TabIndex = 6;
@@ -272,13 +274,6 @@
             this.exitToolStripMenuItem.Text = "&Exit";
             this.exitToolStripMenuItem.Click += new System.EventHandler(this.exitToolStripMenuItem_Click);
             // 
-            // tyleeToolStripMenuItem
-            // 
-            this.tyleeToolStripMenuItem.Name = "tyleeToolStripMenuItem";
-            this.tyleeToolStripMenuItem.Size = new System.Drawing.Size(47, 20);
-            this.tyleeToolStripMenuItem.Text = "&Tylee";
-            this.tyleeToolStripMenuItem.Click += new System.EventHandler(this.tyleeToolStripMenuItem_Click);
-            // 
             // lastSentTxtToolStripMenuItem
             // 
             this.lastSentTxtToolStripMenuItem.Name = "lastSentTxtToolStripMenuItem";
@@ -286,18 +281,45 @@
             this.lastSentTxtToolStripMenuItem.Text = "&LastSentTxt";
             this.lastSentTxtToolStripMenuItem.Click += new System.EventHandler(this.lastSentTxtToolStripMenuItem_Click);
             // 
+            // tyleeToolStripMenuItem
+            // 
+            this.tyleeToolStripMenuItem.Name = "tyleeToolStripMenuItem";
+            this.tyleeToolStripMenuItem.Size = new System.Drawing.Size(47, 20);
+            this.tyleeToolStripMenuItem.Text = "&Tylee";
+            this.tyleeToolStripMenuItem.Click += new System.EventHandler(this.tyleeToolStripMenuItem_Click);
+            // 
+            // listBox1
+            // 
+            this.listBox1.FormattingEnabled = true;
+            this.listBox1.HorizontalScrollbar = true;
+            this.listBox1.Location = new System.Drawing.Point(10, 146);
+            this.listBox1.Name = "listBox1";
+            this.listBox1.Size = new System.Drawing.Size(270, 43);
+            this.listBox1.TabIndex = 8;
+            // 
+            // label4
+            // 
+            this.label4.AutoSize = true;
+            this.label4.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label4.Location = new System.Drawing.Point(100, 127);
+            this.label4.Name = "label4";
+            this.label4.Size = new System.Drawing.Size(100, 16);
+            this.label4.TabIndex = 9;
+            this.label4.Text = "Sent History :";
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(292, 362);
+            this.ClientSize = new System.Drawing.Size(292, 404);
+            this.Controls.Add(this.label4);
+            this.Controls.Add(this.listBox1);
             this.Controls.Add(this.groupBox1);
             this.Controls.Add(this.statusStrip1);
             this.Controls.Add(this.mainMenu);
             this.Controls.Add(this.ServiceProviders);
             this.Controls.Add(this.btnSendSMS);
             this.MainMenuStrip = this.mainMenu;
-            this.MaximumSize = new System.Drawing.Size(308, 400);
             this.MinimumSize = new System.Drawing.Size(308, 400);
             this.Name = "Form1";
             this.Text = "Form1";
@@ -343,6 +365,8 @@
         private System.Windows.Forms.ToolStripMenuItem exitToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem tyleeToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem lastSentTxtToolStripMenuItem;
+        private System.Windows.Forms.Label label4;
+        private System.Windows.Forms.ListBox listBox1;
     }
 }
 
