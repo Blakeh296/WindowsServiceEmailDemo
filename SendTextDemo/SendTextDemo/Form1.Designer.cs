@@ -86,7 +86,9 @@
             // btnSendSMS
             // 
             this.btnSendSMS.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnSendSMS.Location = new System.Drawing.Point(182, 353);
+            this.btnSendSMS.Location = new System.Drawing.Point(194, 370);
+            this.btnSendSMS.MaximumSize = new System.Drawing.Size(88, 23);
+            this.btnSendSMS.MinimumSize = new System.Drawing.Size(88, 23);
             this.btnSendSMS.Name = "btnSendSMS";
             this.btnSendSMS.Size = new System.Drawing.Size(88, 23);
             this.btnSendSMS.TabIndex = 2;
@@ -153,7 +155,7 @@
             // 
             this.statusStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.toolStripStatusLabel1});
-            this.statusStrip1.Location = new System.Drawing.Point(0, 382);
+            this.statusStrip1.Location = new System.Drawing.Point(0, 400);
             this.statusStrip1.Name = "statusStrip1";
             this.statusStrip1.Size = new System.Drawing.Size(292, 22);
             this.statusStrip1.TabIndex = 5;
@@ -170,7 +172,7 @@
             this.groupBox1.Controls.Add(this.tbCharacterCount);
             this.groupBox1.Controls.Add(this.rtbSMSmessage);
             this.groupBox1.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.groupBox1.Location = new System.Drawing.Point(10, 195);
+            this.groupBox1.Location = new System.Drawing.Point(10, 212);
             this.groupBox1.Name = "groupBox1";
             this.groupBox1.Size = new System.Drawing.Size(272, 152);
             this.groupBox1.TabIndex = 6;
@@ -256,28 +258,28 @@
             // clearSMSBodyToolStripMenuItem1
             // 
             this.clearSMSBodyToolStripMenuItem1.Name = "clearSMSBodyToolStripMenuItem1";
-            this.clearSMSBodyToolStripMenuItem1.Size = new System.Drawing.Size(180, 22);
+            this.clearSMSBodyToolStripMenuItem1.Size = new System.Drawing.Size(157, 22);
             this.clearSMSBodyToolStripMenuItem1.Text = "&Clear SMS Body";
             this.clearSMSBodyToolStripMenuItem1.Click += new System.EventHandler(this.clearSMSBodyToolStripMenuItem1_Click);
             // 
             // clearALLToolStripMenuItem
             // 
             this.clearALLToolStripMenuItem.Name = "clearALLToolStripMenuItem";
-            this.clearALLToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.clearALLToolStripMenuItem.Size = new System.Drawing.Size(157, 22);
             this.clearALLToolStripMenuItem.Text = "&Clear ALL";
             this.clearALLToolStripMenuItem.Click += new System.EventHandler(this.clearALLToolStripMenuItem_Click);
             // 
             // exitToolStripMenuItem
             // 
             this.exitToolStripMenuItem.Name = "exitToolStripMenuItem";
-            this.exitToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.exitToolStripMenuItem.Size = new System.Drawing.Size(157, 22);
             this.exitToolStripMenuItem.Text = "&Exit";
             this.exitToolStripMenuItem.Click += new System.EventHandler(this.exitToolStripMenuItem_Click);
             // 
             // lastSentTxtToolStripMenuItem
             // 
             this.lastSentTxtToolStripMenuItem.Name = "lastSentTxtToolStripMenuItem";
-            this.lastSentTxtToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.lastSentTxtToolStripMenuItem.Size = new System.Drawing.Size(157, 22);
             this.lastSentTxtToolStripMenuItem.Text = "&LastSentTxt";
             this.lastSentTxtToolStripMenuItem.Click += new System.EventHandler(this.lastSentTxtToolStripMenuItem_Click);
             // 
@@ -292,16 +294,16 @@
             // 
             this.listBox1.FormattingEnabled = true;
             this.listBox1.HorizontalScrollbar = true;
-            this.listBox1.Location = new System.Drawing.Point(10, 146);
+            this.listBox1.Location = new System.Drawing.Point(12, 137);
             this.listBox1.Name = "listBox1";
-            this.listBox1.Size = new System.Drawing.Size(270, 43);
+            this.listBox1.Size = new System.Drawing.Size(270, 69);
             this.listBox1.TabIndex = 8;
             // 
             // label4
             // 
             this.label4.AutoSize = true;
             this.label4.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label4.Location = new System.Drawing.Point(100, 127);
+            this.label4.Location = new System.Drawing.Point(99, 118);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(100, 16);
             this.label4.TabIndex = 9;
@@ -311,7 +313,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(292, 404);
+            this.ClientSize = new System.Drawing.Size(292, 422);
             this.Controls.Add(this.label4);
             this.Controls.Add(this.listBox1);
             this.Controls.Add(this.groupBox1);
@@ -320,7 +322,8 @@
             this.Controls.Add(this.ServiceProviders);
             this.Controls.Add(this.btnSendSMS);
             this.MainMenuStrip = this.mainMenu;
-            this.MinimumSize = new System.Drawing.Size(308, 400);
+            this.MaximumSize = new System.Drawing.Size(308, 460);
+            this.MinimumSize = new System.Drawing.Size(308, 460);
             this.Name = "Form1";
             this.Text = "Form1";
             this.Load += new System.EventHandler(this.Form1_Load);
