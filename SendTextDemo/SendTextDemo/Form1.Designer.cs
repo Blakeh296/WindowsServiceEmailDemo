@@ -56,6 +56,9 @@
             this.tyleeToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.listBox1 = new System.Windows.Forms.ListBox();
             this.label4 = new System.Windows.Forms.Label();
+            this.sMSHistoryToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.hideToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.showToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.ServiceProviders.SuspendLayout();
             this.statusStrip1.SuspendLayout();
             this.groupBox1.SuspendLayout();
@@ -249,8 +252,9 @@
             this.clearSMSBodyToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.clearSMSBodyToolStripMenuItem1,
             this.clearALLToolStripMenuItem,
-            this.exitToolStripMenuItem,
-            this.lastSentTxtToolStripMenuItem});
+            this.sMSHistoryToolStripMenuItem,
+            this.lastSentTxtToolStripMenuItem,
+            this.exitToolStripMenuItem});
             this.clearSMSBodyToolStripMenuItem.Name = "clearSMSBodyToolStripMenuItem";
             this.clearSMSBodyToolStripMenuItem.Size = new System.Drawing.Size(80, 20);
             this.clearSMSBodyToolStripMenuItem.Text = "&Application";
@@ -258,28 +262,28 @@
             // clearSMSBodyToolStripMenuItem1
             // 
             this.clearSMSBodyToolStripMenuItem1.Name = "clearSMSBodyToolStripMenuItem1";
-            this.clearSMSBodyToolStripMenuItem1.Size = new System.Drawing.Size(157, 22);
+            this.clearSMSBodyToolStripMenuItem1.Size = new System.Drawing.Size(180, 22);
             this.clearSMSBodyToolStripMenuItem1.Text = "&Clear SMS Body";
             this.clearSMSBodyToolStripMenuItem1.Click += new System.EventHandler(this.clearSMSBodyToolStripMenuItem1_Click);
             // 
             // clearALLToolStripMenuItem
             // 
             this.clearALLToolStripMenuItem.Name = "clearALLToolStripMenuItem";
-            this.clearALLToolStripMenuItem.Size = new System.Drawing.Size(157, 22);
+            this.clearALLToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
             this.clearALLToolStripMenuItem.Text = "&Clear ALL";
             this.clearALLToolStripMenuItem.Click += new System.EventHandler(this.clearALLToolStripMenuItem_Click);
             // 
             // exitToolStripMenuItem
             // 
             this.exitToolStripMenuItem.Name = "exitToolStripMenuItem";
-            this.exitToolStripMenuItem.Size = new System.Drawing.Size(157, 22);
+            this.exitToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
             this.exitToolStripMenuItem.Text = "&Exit";
             this.exitToolStripMenuItem.Click += new System.EventHandler(this.exitToolStripMenuItem_Click);
             // 
             // lastSentTxtToolStripMenuItem
             // 
             this.lastSentTxtToolStripMenuItem.Name = "lastSentTxtToolStripMenuItem";
-            this.lastSentTxtToolStripMenuItem.Size = new System.Drawing.Size(157, 22);
+            this.lastSentTxtToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
             this.lastSentTxtToolStripMenuItem.Text = "&LastSentTxt";
             this.lastSentTxtToolStripMenuItem.Click += new System.EventHandler(this.lastSentTxtToolStripMenuItem_Click);
             // 
@@ -311,6 +315,29 @@
             this.label4.TabIndex = 9;
             this.label4.Text = "Sent History :";
             // 
+            // sMSHistoryToolStripMenuItem
+            // 
+            this.sMSHistoryToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.hideToolStripMenuItem,
+            this.showToolStripMenuItem});
+            this.sMSHistoryToolStripMenuItem.Name = "sMSHistoryToolStripMenuItem";
+            this.sMSHistoryToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.sMSHistoryToolStripMenuItem.Text = "SMS &History";
+            // 
+            // hideToolStripMenuItem
+            // 
+            this.hideToolStripMenuItem.Name = "hideToolStripMenuItem";
+            this.hideToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.hideToolStripMenuItem.Text = "&Hide";
+            this.hideToolStripMenuItem.Click += new System.EventHandler(this.hideToolStripMenuItem_Click);
+            // 
+            // showToolStripMenuItem
+            // 
+            this.showToolStripMenuItem.Name = "showToolStripMenuItem";
+            this.showToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.showToolStripMenuItem.Text = "&Show";
+            this.showToolStripMenuItem.Click += new System.EventHandler(this.showToolStripMenuItem_Click);
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -325,7 +352,6 @@
             this.Controls.Add(this.btnSendSMS);
             this.MainMenuStrip = this.mainMenu;
             this.MaximumSize = new System.Drawing.Size(308, 460);
-            this.MinimumSize = new System.Drawing.Size(308, 460);
             this.Name = "Form1";
             this.Text = "Form1";
             this.Load += new System.EventHandler(this.Form1_Load);
@@ -372,6 +398,9 @@
         private System.Windows.Forms.ToolStripMenuItem lastSentTxtToolStripMenuItem;
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.ListBox listBox1;
+        private System.Windows.Forms.ToolStripMenuItem sMSHistoryToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem hideToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem showToolStripMenuItem;
     }
 }
 

@@ -125,6 +125,7 @@ namespace SendTextDemo
             tbPhoneNumber.Text = "";
             rtbSMSmessage.Text = "";
             tbCharacterCount.Text = tbPhoneNumber.TextLength.ToString();
+            listBox1.Items.Clear();
 
             statusStrip1.BackColor = Color.FromName("Control");
             toolStripStatusLabel1.ForeColor = Color.Black;
@@ -206,6 +207,32 @@ namespace SendTextDemo
         private void lastSentTxtToolStripMenuItem_Click(object sender, EventArgs e)
         {
             rtbSMSmessage.Text = lastMessage;
+        }
+
+        private void showToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            listBox1.Visible = true;
+            label4.Visible = true;
+
+            this.Size = new Size(308, 460);
+            this.MinimumSize = new Size(308, 460);
+            this.MaximumSize = new Size(308, 460);
+
+            groupBox1.Location = new Point(10, 212);
+            btnSendSMS.Location = new Point(194, 370);
+        }
+
+        private void hideToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            listBox1.Visible = false;
+            label4.Visible = false;
+
+            this.Size = new Size(308, 375);
+            this.MinimumSize = new Size(308, 375);
+            this.MaximumSize = new Size(308, 375);
+
+            groupBox1.Location = new Point(10, 125);
+            btnSendSMS.Location = new Point(194, 283);
         }
     }
 }
